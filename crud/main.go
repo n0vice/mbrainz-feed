@@ -2,78 +2,105 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/gorilla/mux"
 	"github.com/michiwend/gomusicbrainz"
 )
 
-var client *gomusicbrainz.WS2Client
-
 func main() {
-	var err error
-	client, err = gomusicbrainz.NewWS2Client("https://musicbrainz.org/ws/2", "My personal MB feed service", "0.0.1", "https://github.com/n0vice")
+	// customize output
+	log.SetFlags(0)
+	log.SetOutput(os.Stderr)
+
+	//read args
+	if len(os.Args) < 4 {
+		log.Fatalf(`Usage: ./crud <description> <version> <contact>`)
+	}
+	description, version, contact := os.Args[1], os.Args[2], os.Args[3]
+
+	//create client
+	client, err := gomusicbrainz.NewWS2Client("https://musicbrainz.org/ws/2", description, version, contact)
 	if err != nil {
 		log.Fatalf("Failed to create WS2 client: %v", err)
 	}
 
+	handler, err := newArtistHandler(client)
+	if err != nil {
+		log.Fatalf("Failed to create /artist handler: %v", err)
+	}
 	r := mux.NewRouter()
-	r.HandleFunc("/artist/{name}", artistHandler)
+	r.HandleFunc("/artist/search/{name}", handler.searchArtist)
+	r.HandleFunc("/artist/lookup/{id}", handler.lookupArtist)
 	if err := http.ListenAndServe(":8080", r); err != nil {
 		log.Fatalf("Failed to start http server: %v", err)
 	}
 }
 
-func artistHandler(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	artistName := vars["name"]
+type artistHandler struct {
+	client   *gomusicbrainz.WS2Client
+	template *template.Template
+}
 
-	artistResponse, err := client.SearchArtist(artistName, -1, -1)
+func newArtistHandler(client *gomusicbrainz.WS2Client) (*artistHandler, error) {
+	funcMap := template.FuncMap{"getYear": getYear}
+	tmpl, err := template.New("base").Funcs(funcMap).ParseFiles("artists.html", "artist.html")
 	if err != nil {
-		w.WriteHeader(http.StatusServiceUnavailable)
-		fmt.Fprintf(w, "Failed to find artist: %v", err)
+		return nil, fmt.Errorf("Failed to parse artists.html template: %v", err)
+	}
+	return &artistHandler{client: client, template: tmpl}, nil
+}
+
+func (h *artistHandler) searchArtist(w http.ResponseWriter, r *http.Request) {
+	artistName := mux.Vars(r)["name"]
+	if artistName == "" {
+		writeError(w, http.StatusBadRequest, "Expecting non-empty artist name")
 		return
 	}
 
-	for _, a := range artistResponse.Artists {
-		fmt.Fprintln(w, artist(*a))
+	artistResponse, err := h.client.SearchArtist(artistName, -1, -1)
+	if err != nil {
+		writeError(w, http.StatusNotFound, fmt.Sprintf("Failed to find artist: %v", err))
+		return
+	}
+
+	if err := h.template.ExecuteTemplate(w, "artists.html", artistResponse); err != nil {
+		writeError(w, http.StatusInternalServerError, fmt.Sprintf("Failed to execute artists template: %v", err))
 	}
 	return
 }
 
-type artist gomusicbrainz.Artist
+func (h *artistHandler) lookupArtist(w http.ResponseWriter, r *http.Request) {
+	artistID := mux.Vars(r)["id"]
+	if artistID == "" {
+		writeError(w, http.StatusBadRequest, "Expecting non-empty artist ID")
+		return
+	}
 
-func (a artist) String() string {
-	result := a.Name
-	var additionalInfo string
-	var t time.Time
-	if a.Lifespan.Begin.Time != t {
-		additionalInfo += fmt.Sprintf("%v", a.Lifespan.Begin.Year())
-		if a.Lifespan.Ended {
-			additionalInfo += fmt.Sprintf("-%v", a.Lifespan.End.Year())
-		}
-		additionalInfo += " "
+	artistResponse, err := h.client.LookupArtist(gomusicbrainz.MBID(artistID))
+	if err != nil {
+		writeError(w, http.StatusNotFound, fmt.Sprintf("Failed to lookup artist: %v", err))
+		return
 	}
-	if a.Area.Name != "" {
-		additionalInfo += a.Area.Name
-		if a.BeginArea.Name != "" {
-			additionalInfo += ", " + a.BeginArea.Name
-		}
+
+	if err := h.template.ExecuteTemplate(w, "artist.html", artistResponse); err != nil {
+		writeError(w, http.StatusInternalServerError, fmt.Sprintf("Failed to execute artist template: %v", err))
 	}
-	if additionalInfo != "" {
-		result += fmt.Sprintf(" (%v)", additionalInfo)
+	return
+}
+
+func writeError(w http.ResponseWriter, status int, message string) {
+	w.WriteHeader(status)
+	fmt.Fprintln(w, message)
+}
+
+func getYear(input time.Time) string {
+	if input.IsZero() {
+		return ""
 	}
-	if len(a.Tags) > 0 {
-		var index, count int
-		for i, t := range a.Tags {
-			if t.Count > count {
-				count = t.Count
-				index = i
-			}
-		}
-		result += a.Tags[index].Name
-	}
-	return result
+	return input.Format("2006-01-02")
 }

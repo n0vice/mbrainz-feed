@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metadata created="2017-11-07T15:36:36.858Z" 
+  xmlns="http://musicbrainz.org/ns/mmd-2.0#" 
+  xmlns:ext="http://musicbrainz.org/ns/ext#-2.0">
+  <artist-list count="6" offset="0">
+    <artist id="33e9bf9b-87b4-45df-baf9-e0b6048c03e2" type="Person" ext:score="100">
+      <name>Troy Beetles</name>
+      <sort-name>Beetles, Troy</sort-name>
+      <gender>male</gender>
+      <country>CA</country>
+      <area id="71bbafaa-e825-3e15-8ca9-017dcad1748b">
+        <name>Canada</name>
+        <sort-name>Canada</sort-name>
+      </area>
+      <life-span>
+        <begin>1988</begin>
+        <ended>false</ended>
+      </life-span>
+    </artist>
+    <artist id="b06f5860-ce8f-4d8f-92ee-6c6f165ef8ef" type="Group" ext:score="79">
+      <name>The Silver Beetles</name>
+      <sort-name>Silver Beetles, The</sort-name>
+      <area id="c249c30e-88ab-4b2f-a745-96a25bd7afee">
+        <name>Liverpool</name>
+        <sort-name>Liverpool</sort-name>
+      </area>
+      <begin-area id="c249c30e-88ab-4b2f-a745-96a25bd7afee">
+        <name>Liverpool</name>
+        <sort-name>Liverpool</sort-name>
+      </begin-area>
+      <end-area id="c249c30e-88ab-4b2f-a745-96a25bd7afee">
+        <name>Liverpool</name>
+        <sort-name>Liverpool</sort-name>
+      </end-area>
+      <disambiguation>The name of The Beatles in May-June 1960</disambiguation>
+      <life-span>
+        <begin>1960-05</begin>
+        <end>1960-06</end>
+        <ended>true</ended>
+      </life-span>
+      <alias-list>
+        <alias sort-name="Silver Beatles, The">The Silver Beatles</alias>
+      </alias-list>
+    </artist>
+    <artist id="4cf0e9c6-53a7-4188-b812-8a21607ab921" type="Group" ext:score="79">
+      <name>The Dung Beetles</name>
+      <sort-name>Dung Beetles, The</sort-name>
+      <life-span>
+        <ended>false</ended>
+      </life-span>
+    </artist>
+    <artist id="3d45df45-d73b-4366-a47d-b4ffb81cef3d" type="Group" ext:score="66">
+      <name>The Beetles</name>
+      <sort-name>Beetles, The</sort-name>
+      <disambiguation>Beatles cover band</disambiguation>
+      <life-span>
+        <begin>1994</begin>
+        <end>2005</end>
+        <ended>true</ended>
+      </life-span>
+    </artist>
+    <artist id="a986ae30-f4c4-4a61-8823-782b983d46c8" ext:score="52">
+      <name>Meet The Beetles</name>
+      <sort-name>Meet The Beetles</sort-name>
+      <life-span>
+        <ended>false</ended>
+      </life-span>
+    </artist>
+    <artist id="b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d" type="Group" ext:score="27">
+      <name>The Beatles</name>
+      <sort-name>Beatles, The</sort-name>
+      <country>GB</country>
+      <area id="8a754a16-0027-3a29-b6d7-2b40ea0481ed">
+        <name>United Kingdom</name>
+        <sort-name>United Kingdom</sort-name>
+      </area>
+      <begin-area id="c249c30e-88ab-4b2f-a745-96a25bd7afee">
+        <name>Liverpool</name>
+        <sort-name>Liverpool</sort-name>
+      </begin-area>
+      <life-span>
+        <begin>1957-03</begin>
+        <end>1970-04-10</end>
+        <ended>true</ended>
+      </life-span>
+      <alias-list>
+        <alias locale="ko" sort-name="더 비틀즈" primary="primary">더 비틀즈</alias>
+        <alias locale="ja" sort-name="ビートルズ (ザ)" primary="primary">ザ・ビートルズ</alias>
+        <alias sort-name="B" type="Search hint">B</alias>
+        <alias sort-name="Be" type="Search hint">Be</alias>
+        <alias sort-name="Beat" type="Search hint">Beat</alias>
+        <alias locale="en" sort-name="Beatles" type="Artist name">Beatles</alias>
+        <alias sort-name="Beetles" type="Search hint">Beetles</alias>
+        <alias sort-name="fab four" type="Search hint">fab four</alias>
+        <alias locale="es" sort-name="Los Beatles" primary="primary">Los Beatles</alias>
+        <alias locale="en" sort-name="Beatles, The" type="Artist name" primary="primary">The Beatles</alias>
+        <alias sort-name="Savage Young Beatles, The">The Savage Young Beatles</alias>
+        <alias locale="ru" sort-name="Битлз" primary="primary">Битлз</alias>
+        <alias locale="zh_Hans" sort-name="披头士" primary="primary">披头士</alias>
+        <alias locale="zh_Hant" sort-name="披頭四" primary="primary">披頭四</alias>
+      </alias-list>
+      <tag-list>
+        <tag count="11">
+          <name>rock</name>
+        </tag>
+        <tag count="10">
+          <name>pop</name>
+        </tag>
+        <tag count="0">
+          <name>progressive rock</name>
+        </tag>
+        <tag count="0">
+          <name>80s</name>
+        </tag>
+        <tag count="0">
+          <name>heavy metal</name>
+        </tag>
+        <tag count="0">
+          <name>pop-rock</name>
+        </tag>
+        <tag count="0">
+          <name>orchestral</name>
+        </tag>
+        <tag count="2">
+          <name>experimental</name>
+        </tag>
+        <tag count="7">
+          <name>british</name>
+        </tag>
+        <tag count="1">
+          <name>uk</name>
+        </tag>
+        <tag count="0">
+          <name>60s</name>
+        </tag>
+        <tag count="2">
+          <name>hard rock</name>
+        </tag>
+        <tag count="0">
+          <name>indie rock</name>
+        </tag>
+        <tag count="1">
+          <name>folk rock</name>
+        </tag>
+        <tag count="2">
+          <name>psychedelic rock</name>
+        </tag>
+        <tag count="0">
+          <name>psychedelic</name>
+        </tag>
+        <tag count="1">
+          <name>blues rock</name>
+        </tag>
+        <tag count="-1">
+          <name>britpop</name>
+        </tag>
+        <tag count="1">
+          <name>art rock</name>
+        </tag>
+        <tag count="0">
+          <name>folk-rock</name>
+        </tag>
+        <tag count="2">
+          <name>psychedelic pop</name>
+        </tag>
+        <tag count="4">
+          <name>pop rock</name>
+        </tag>
+        <tag count="1">
+          <name>british invasion</name>
+        </tag>
+        <tag count="0">
+          <name>rock and roll</name>
+        </tag>
+        <tag count="0">
+          <name>rock roll</name>
+        </tag>
+        <tag count="0">
+          <name>english</name>
+        </tag>
+        <tag count="1">
+          <name>sunshine pop</name>
+        </tag>
+        <tag count="1">
+          <name>folk pop</name>
+        </tag>
+        <tag count="1">
+          <name>liverpool</name>
+        </tag>
+        <tag count="0">
+          <name>parlophone</name>
+        </tag>
+        <tag count="0">
+          <name>united kingdom</name>
+        </tag>
+        <tag count="0">
+          <name>hair metal</name>
+        </tag>
+        <tag count="0">
+          <name>1</name>
+        </tag>
+        <tag count="0">
+          <name>bbc</name>
+        </tag>
+        <tag count="0">
+          <name>classic pop and rock</name>
+        </tag>
+        <tag count="0">
+          <name>singer songwriter</name>
+        </tag>
+        <tag count="1">
+          <name>classical pop</name>
+        </tag>
+        <tag count="0">
+          <name>instrumental pop</name>
+        </tag>
+        <tag count="2">
+          <name>merseybeat</name>
+        </tag>
+        <tag count="0">
+          <name>adult alternative pop rock</name>
+        </tag>
+        <tag count="0">
+          <name>tribute albums</name>
+        </tag>
+        <tag count="0">
+          <name>british psychedelia</name>
+        </tag>
+        <tag count="0">
+          <name>orchestral pop</name>
+        </tag>
+        <tag count="0">
+          <name>pop-metal</name>
+        </tag>
+        <tag count="0">
+          <name>male vocalists</name>
+        </tag>
+        <tag count="0">
+          <name>the-beatles</name>
+        </tag>
+        <tag count="1">
+          <name>boys band</name>
+        </tag>
+        <tag count="2">
+          <name>rock &amp; roll</name>
+        </tag>
+        <tag count="0">
+          <name>pop/rock</name>
+        </tag>
+        <tag count="1">
+          <name>rhythm &amp; blues</name>
+        </tag>
+        <tag count="0">
+          <name>overrated</name>
+        </tag>
+        <tag count="1">
+          <name>art pop</name>
+        </tag>
+        <tag count="0">
+          <name>one beatles</name>
+        </tag>
+        <tag count="0">
+          <name>a filk artist</name>
+        </tag>
+        <tag count="1">
+          <name>british rhythm &amp; blues</name>
+        </tag>
+        <tag count="1">
+          <name>beat music</name>
+        </tag>
+      </tag-list>
+    </artist>
+  </artist-list>
+</metadata>

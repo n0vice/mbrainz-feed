@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <title>artists</title>
+</head>
+
+<body>
+    <ul>
+        {{range $index, $element := .Artists}}
+        <li>
+            {{$area:=$element.Area.Name}}
+            {{$ccode := $element.CountryCode}}
+            <a href="/artist/lookup/{{$element.ID}}">{{$element.Name}}</a>
+                {{if (ne $area "") or (ne $ccode "")}}
+                ({{$element.Area.Name}}{{if ne $element.CountryCode ""}}, {{$element.CountryCode}}{{end}})
+                {{end}}
+        </li>
+        {{end}}
+    </ul>
+</body>
+
+</html>

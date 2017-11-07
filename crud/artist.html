@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <title>artist {{.Name}}</title>
+</head>
+
+<body>
+    <div><a href="/artist/subscribe/{{.ID}}">Subscribe</a></div>
+    <div>Name: {{.Name}}</div>
+    {{$area := .Area.Name}}
+    {{$ccode := .CountryCode}}
+    {{if (ne $area "") or (ne $ccode)}}
+    <div>From: {{if ne $area ""}}{{.Area.Name}}{{end}}{{if ne $ccode ""}}, {{.CountryCode}}{{end}}</div>
+    {{end}}
+    {{$start := .Lifespan.Begin.Time|getYear}}
+    {{$end := .Lifespan.End.Time|getYear}}
+    {{if (ne $start "") or (ne $end "")}}
+    <div>Dates: {{if ne $start ""}}{{$start}}{{end}}{{if ne $end ""}}-{{$end}}{{end}}</div>
+    {{end}}
+</body>
+
+</html>
