@@ -47,7 +47,7 @@ type artistHandler struct {
 }
 
 func newArtistHandler(client *gomusicbrainz.WS2Client) (*artistHandler, error) {
-	funcMap := template.FuncMap{"getYear": getYear}
+	funcMap := template.FuncMap{"formatTime": formatTime}
 	tmpl, err := template.New("base").Funcs(funcMap).ParseFiles("artists.html", "artist.html")
 	if err != nil {
 		return nil, fmt.Errorf("Failed to parse artists.html template: %v", err)
@@ -94,11 +94,10 @@ func (h *artistHandler) lookupArtist(w http.ResponseWriter, r *http.Request) {
 }
 
 func writeError(w http.ResponseWriter, status int, message string) {
-	w.WriteHeader(status)
-	fmt.Fprintln(w, message)
+	http.Error(w, message, status)
 }
 
-func getYear(input time.Time) string {
+func formatTime(input time.Time) string {
 	if input.IsZero() {
 		return ""
 	}

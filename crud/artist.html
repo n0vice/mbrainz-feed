@@ -12,8 +12,8 @@
     {{if (ne $area "") or (ne $ccode)}}
     <div>From: {{if ne $area ""}}{{.Area.Name}}{{end}}{{if ne $ccode ""}}, {{.CountryCode}}{{end}}</div>
     {{end}}
-    {{$start := .Lifespan.Begin.Time|getYear}}
-    {{$end := .Lifespan.End.Time|getYear}}
+    {{$start := .Lifespan.Begin.Time|formatTime}}
+    {{$end := .Lifespan.End.Time|formatTime}}
     {{if (ne $start "") or (ne $end "")}}
     <div>Dates: {{if ne $start ""}}{{$start}}{{end}}{{if ne $end ""}}-{{$end}}{{end}}</div>
     {{end}}

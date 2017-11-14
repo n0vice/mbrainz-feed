@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  crud:
+    image: crud
+    build: .
+    ports:
+      - 8080:8080
